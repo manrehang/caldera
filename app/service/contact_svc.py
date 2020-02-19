@@ -93,7 +93,8 @@ class ContactService(BaseService):
                 await self._save(Result(**result))
             return agent, await self._get_instructions(agent.paw)
         agent = await self.get_service('data_svc').store(Agent(
-            sleep_min=self.sleep_min, sleep_max=self.sleep_max, watchdog=self.watchdog, **kwargs)
+            sleep_min=self.sleep_min, sleep_max=self.sleep_max, watchdog=self.watchdog,
+            c2=[c.name for c in self.contacts], **kwargs)
         )
         await self._add_agent_to_operation(agent)
         self.log.debug('First time %s beacon from %s' % (agent.contact, agent.paw))
