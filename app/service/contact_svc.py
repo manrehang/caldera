@@ -92,7 +92,6 @@ class ContactService(BaseService):
             if result:
                 await self._save(Result(**result))
             return agent, await self._get_instructions(agent.paw)
-        print(**kwargs)
         agent = await self.get_service('data_svc').store(Agent(
             sleep_min=self.sleep_min, sleep_max=self.sleep_max, watchdog=self.watchdog, **kwargs)
         )
